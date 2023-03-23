@@ -1,4 +1,5 @@
 namespace Aufgabe1 {
+    debugger;
     let subjects: string[] = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore"];
     let verbs: string[] = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstroert"];
     let objects: string[] = ["Zaubertraenke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];

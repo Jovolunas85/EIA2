@@ -4,7 +4,6 @@ namespace Aufgabe1 {
     let objects: string[] = ["Zaubertraenke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
     //console.log(subjekte, praedikate, objekte);
     //let zk: string;
-
     for (let i: number = subjects.length; i >= 1; i--) {
         //console.log(i);
         //console.log(zk);
@@ -20,6 +19,7 @@ namespace Aufgabe1 {
         console.log(verse);
         //zk = _sub+ " " + _pra + " " +_obj;
         //return zk;
+        
     }
 
 }

@@ -1,7 +1,6 @@
 "use strict";
 var Aufgabe1;
 (function (Aufgabe1) {
-    debugger;
     let subjects = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore"];
     let verbs = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstroert"];
     let objects = ["Zaubertraenke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
@@ -10,16 +9,17 @@ var Aufgabe1;
     for (let i = subjects.length; i >= 1; i--) {
         //console.log(i);
         //console.log(zk);
-        getVerse(subjects, verbs, objects);
+        let satz = getVerse(subjects, verbs, objects);
+        console.log(satz);
     }
     function getVerse(_sub, _ver, _obj) {
         let verse = "";
         let zufall = Math.floor(Math.random() * _sub.length);
         let zufall2 = Math.floor(Math.random() * _ver.length);
         let zufall3 = Math.floor(Math.random() * _obj.length);
-        //console.log(zufall);
+        //console.log(zufall);  
         verse = _sub.splice(zufall, 1)[0] + " " + _ver.splice(zufall2, 1)[0] + " " + _obj.splice(zufall3, 1)[0];
-        console.log(verse);
+        return verse;
         //zk = _sub+ " " + _pra + " " +_obj;
         //return zk;
     }

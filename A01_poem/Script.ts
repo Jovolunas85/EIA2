@@ -3,7 +3,7 @@ namespace Aufgabe1 {
     let verbs: string[] = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstroert"];
     let objects: string[] = ["Zaubertraenke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
     //console.log(subjekte, praedikate, objekte);
-    let zk: string;
+    //let zk: string;
     getVerse(subjects[Math.floor(Math.random() * 7)], verbs[Math.floor(Math.random() * 7)], objects[Math.floor(Math.random() * 7)]);
     for (let i: number = subjects.length; i >= 1; i--) {
         //console.log(i);

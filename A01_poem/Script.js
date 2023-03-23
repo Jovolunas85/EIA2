@@ -5,7 +5,7 @@ var Aufgabe1;
     let verbs = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstroert"];
     let objects = ["Zaubertraenke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
     //console.log(subjekte, praedikate, objekte);
-    let zk;
+    //let zk: string;
     getVerse(subjects[Math.floor(Math.random() * 7)], verbs[Math.floor(Math.random() * 7)], objects[Math.floor(Math.random() * 7)]);
     for (let i = subjects.length; i >= 1; i--) {
         //console.log(i);

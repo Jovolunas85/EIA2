@@ -1,6 +1,7 @@
 "use strict";
 var Aufgabe1;
 (function (Aufgabe1) {
+    debugger;
     let subjects = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore"];
     let verbs = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstroert"];
     let objects = ["Zaubertraenke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];

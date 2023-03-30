@@ -18,8 +18,9 @@ var A2;
         let xvalue = _event.clientX;
         let yvalue = _event.clientY;
         if (span != null) {
-            span.innerText = "Mouseposition: " + xvalue + "," + yvalue;
+            span.innerText = "Mouseposition: X: " + xvalue + ", Y: " + yvalue + " " + _event.target;
             span.setAttribute('style', 'right: xvalue+ 10px');
+            //span.style.top = 
         }
     }
     function logInfo(_event) {

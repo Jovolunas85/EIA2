@@ -6,19 +6,22 @@ namespace A2 {
         document.addEventListener("keyup", logInfo);
         document.body.addEventListener("click", logInfo);
         document.body.addEventListener("keyup", logInfo);
-        document.getElementById("#div0")!.addEventListener("click", logInfo);
-        document.getElementById("#div0")!.addEventListener("keyup", logInfo);
-        document.getElementById("#div1")!.addEventListener("click", logInfo);
-        document.getElementById("#div1")!.addEventListener("keyup", logInfo);
+        document.getElementById("div0")!.addEventListener("click", logInfo);
+        document.getElementById("div0")!.addEventListener("keyup", logInfo);
+        document.getElementById("div1")!.addEventListener("click", logInfo);
+        document.getElementById("div1")!.addEventListener("keyup", logInfo);
     }
     function setInfoBox(_event: MouseEvent) {
         let span: HTMLElement | null = document.getElementById("span");
         let xvalue: number = _event.clientX;
         let yvalue: number = _event.clientY;
+        let offsetx: number = _event.clientX + 10;
+        let offsety: number = _event.clientY + 10;
         if (span != null) {
             span.innerText = "Mouseposition: X: " + xvalue + ", Y: " + yvalue + " " + _event.target;
-            span.setAttribute('style', 'right: xvalue+ 10px');
-            //span.style.top = 
+            //span.setAttribute('style', 'right: xvalue+ 10px');
+            span.style.left = offsetx + "px"; 
+            span.style.top = offsety + "px"; 
         }
 
     }
@@ -26,4 +29,14 @@ namespace A2 {
         console.log(_event.target, _event.currentTarget, _event.type, _event);
     }
 
+    let button_element: HTMLButtonElement = document.createElement("button");
+    button_element.innerHTML = "Button";
+    button_element.className = "btnclass";
+    document.querySelector("#div0")!.appendChild(button_element);
+
+    button_element.addEventListener('click', clickButton);
+
+    function clickButton(){
+        console.log("Servus.");
+    }
 }

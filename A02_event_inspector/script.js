@@ -40,10 +40,13 @@ var A2;
     button_element.className = "btnclass";
     document.querySelector("#div0").appendChild(button_element);
     button_element.addEventListener('click', clickButton);
+    let customevent = new CustomEvent("Event4", { bubbles: true });
     function clickButton() {
         console.log("Servus.");
-        let customevent = new CustomEvent("Event4", { bubbles: true, detail: { a } });
-        document.addEventListener("Event4", (e) => console.log(e.bubbles, e.detail.Key));
+        Event();
+    }
+    function Event() {
+        document.addEventListener("Event4", (e) => console.log(e.bubbles));
         document.dispatchEvent(customevent);
     }
 })(A2 || (A2 = {}));

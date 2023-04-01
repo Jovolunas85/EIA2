@@ -44,12 +44,12 @@ namespace A2 {
     let customevent: CustomEvent = new CustomEvent("Event4", { bubbles: true});
     function clickButton() {
         console.log("Servus.");
-        Event();
         
+        document.addEventListener("Event4",CustomEvent);
+        document.dispatchEvent(customevent);
 
     }
-    function Event(){
-        document.addEventListener("Event4", (e) => console.log(e.bubbles));
-    document.dispatchEvent(customevent);
+    function CustomEvent(){
+        console.log(customevent.bubbles)
     }
 }

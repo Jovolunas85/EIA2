@@ -43,11 +43,11 @@ var A2;
     let customevent = new CustomEvent("Event4", { bubbles: true });
     function clickButton() {
         console.log("Servus.");
-        Event();
-    }
-    function Event() {
-        document.addEventListener("Event4", (e) => console.log(e.bubbles));
+        document.addEventListener("Event4", CustomEvent);
         document.dispatchEvent(customevent);
+    }
+    function CustomEvent() {
+        console.log(customevent.bubbles);
     }
 })(A2 || (A2 = {}));
 //# sourceMappingURL=script.js.map

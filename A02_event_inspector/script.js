@@ -1,4 +1,10 @@
 "use strict";
+/*Aufgabe: <L02_EventInspetor>
+Name: <Medin Flaig>
+Matrikel: <272505>
+Datum: <01.04.2023>
+In Zusammenarbeit mit Lena Fleig und mit Hilfe von Laura Kupferschmid und Lara Halmosi
+Quellen: <https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent>*/
 var A2;
 (function (A2) {
     window.addEventListener("load", handleLoad);

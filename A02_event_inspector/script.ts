@@ -1,3 +1,9 @@
+/*Aufgabe: <L02_EventInspetor>
+Name: <Medin Flaig>
+Matrikel: <272505>
+Datum: <01.04.2023>
+In Zusammenarbeit mit Lena Fleig und mit Hilfe von Laura Kupferschmid und Lara Halmosi
+Quellen: <https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent>*/
 namespace A2 {
     window.addEventListener("load", handleLoad);
     function handleLoad() {
@@ -20,8 +26,8 @@ namespace A2 {
         if (span != null) {
             span.innerText = "Mouseposition: X: " + xvalue + ", Y: " + yvalue + " " + _event.target;
             //span.setAttribute('style', 'right: xvalue+ 10px');
-            span.style.left = offsetx + "px"; 
-            span.style.top = offsety + "px"; 
+            span.style.left = offsetx + "px";
+            span.style.top = offsety + "px";
         }
 
     }
@@ -36,11 +42,11 @@ namespace A2 {
 
     button_element.addEventListener('click', clickButton);
 
-    function clickButton(){
+    function clickButton() {
         console.log("Servus.");
-        let customevent: CustomEvent = new CustomEvent("Event4", {bubbles: true, detail: {name: "Julian"}});
-        document.addEventListener("Event4",(e) =>console.log(e.bubbles,e.detail.name));
+        let customevent: CustomEvent = new CustomEvent("Event4", { bubbles: true, detail: { name: "Julian" } });
+        document.addEventListener("Event4", (e) => console.log(e.bubbles, e.detail.name));
         document.dispatchEvent(customevent);
-        
+
     }
 }

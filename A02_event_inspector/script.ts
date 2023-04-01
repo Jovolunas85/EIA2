@@ -44,8 +44,8 @@ namespace A2 {
 
     function clickButton() {
         console.log("Servus.");
-        let customevent: CustomEvent = new CustomEvent("Event4", { bubbles: true, detail: { name: "Julian" } });
-        document.addEventListener("Event4", (e) => console.log(e.bubbles, e.detail.name));
+        let customevent: CustomEvent = new CustomEvent("Event4", { bubbles: true, detail: {Key: 5} });
+        document.addEventListener("Event4", (e) => console.log(e.bubbles, e.detail.Key));
         document.dispatchEvent(customevent);
 
     }

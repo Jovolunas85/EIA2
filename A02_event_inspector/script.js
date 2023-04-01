@@ -37,8 +37,8 @@ var A2;
     function clickButton() {
         console.log("Servus.");
         let customevent = new CustomEvent("Event4", { bubbles: true, detail: { name: "Julian" } });
-        document.dispatchEvent(customevent);
         document.addEventListener("Event4", (e) => console.log(e.bubbles, e.detail.name));
+        document.dispatchEvent(customevent);
     }
 })(A2 || (A2 = {}));
 //# sourceMappingURL=script.js.map

@@ -1,7 +1,6 @@
 "use strict";
 var A2;
 (function (A2) {
-    debugger;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
         document.addEventListener("mousemove", setInfoBox);
@@ -37,6 +36,9 @@ var A2;
     button_element.addEventListener('click', clickButton);
     function clickButton() {
         console.log("Servus.");
+        let customevent = new CustomEvent("Event4", { bubbles: true, detail: { name: "Julian" } });
+        document.dispatchEvent(customevent);
+        document.addEventListener("Event4", (e) => console.log(e.bubbles, e.detail.name));
     }
 })(A2 || (A2 = {}));
 //# sourceMappingURL=script.js.map

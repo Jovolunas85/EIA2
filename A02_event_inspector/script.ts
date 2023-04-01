@@ -1,5 +1,4 @@
 namespace A2 {
-    debugger;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
         document.addEventListener("mousemove", setInfoBox);
@@ -39,5 +38,10 @@ namespace A2 {
 
     function clickButton(){
         console.log("Servus.");
+        let customevent: CustomEvent = new CustomEvent("Event4", {bubbles: true, detail: {name: "Julian"}});
+        document.dispatchEvent(customevent);
+        document.addEventListener("Event4",(e) =>console.log(e.bubbles,e.detail.name));
+        
+        
     }
 }

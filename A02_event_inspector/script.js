@@ -42,7 +42,7 @@ var A2;
     button_element.addEventListener('click', clickButton);
     function clickButton() {
         console.log("Servus.");
-        let customevent = new CustomEvent("Event4", { bubbles: true, detail: { Key: 5 } });
+        let customevent = new CustomEvent("Event4", { bubbles: true, detail: { a } });
         document.addEventListener("Event4", (e) => console.log(e.bubbles, e.detail.Key));
         document.dispatchEvent(customevent);
     }

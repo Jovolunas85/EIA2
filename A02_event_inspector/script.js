@@ -1,6 +1,7 @@
 "use strict";
 var A2;
 (function (A2) {
+    debugger;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
         document.addEventListener("mousemove", setInfoBox);

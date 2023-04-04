@@ -1,0 +1,32 @@
+span{
+    position: fixed;
+    offset: right;
+    background-color: black;
+    color: white;
+}
+
+
+#div0{
+    background-color: rgb(255, 0, 0);
+    position: absolute;
+    height: 300px;
+    width: 500px;
+    top: 200px;
+    margin-left: 10%;
+}
+#div1{
+    background-color: rgb(38, 0, 255);
+    position: absolute;
+    height: 300px;
+    width: 500px;
+    top: 200px;
+    margin-left: 60%;
+    
+}
+button{
+    
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+

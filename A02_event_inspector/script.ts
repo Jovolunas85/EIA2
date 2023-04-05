@@ -45,11 +45,11 @@ namespace A2 {
     function clickButton() {
         console.log("Servus.");
         
-        document.addEventListener("Event4",CustomEvent1);
+        document.addEventListener("Event4",createCustomEvent);
         document.dispatchEvent(customevent);
 
     }
-    function CustomEvent1(){
+    function createCustomEvent(){
         console.log(customevent.bubbles);
     }
 }

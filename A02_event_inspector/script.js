@@ -43,10 +43,10 @@ var A2;
     let customevent = new CustomEvent("Event4", { bubbles: true });
     function clickButton() {
         console.log("Servus.");
-        document.addEventListener("Event4", CustomEvent1);
+        document.addEventListener("Event4", createCustomEvent);
         document.dispatchEvent(customevent);
     }
-    function CustomEvent1() {
+    function createCustomEvent() {
         console.log(customevent.bubbles);
     }
 })(A2 || (A2 = {}));

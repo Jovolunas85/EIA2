@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 </head>
+
 <body>
     <h1>ToDo-Liste</h1>
-    <div id="div">
-        <button id="edit">Eddit List</button>
+    <p></p>
+    <h2>Erstelle eine Aufgabe</h2>
+    <div class="div">
+
+
+        <!--<button id="add">+</button>-->
         <fieldset>
-            <input type="checkbox" name="done"> 
+            <!--<input type="checkbox" name="done"> -->
             <input type="text" name="task" placeholder="Aufgabe">
-            <input type="datetime-local" name="deadline">
-            <input type="text" name="person" placeholder="Name">
             <input type="text" name="comment" placeholder="Kommentar">
+            <input type="text" name="person" placeholder="Name">
+            <input type="datetime-local" name="deadline">
             <label> in Bearbeitung:</label>
-            <input type="checkbox" name="inprogress ">
+            <input type="checkbox" name="inprogress">
+            <button id="finish">Fertig</button>
         </fieldset>
+
+    </div>
+
+    <div class="boss">
+        <input type="checkbox" name="done">
+        <input type="text" name="task" placeholder="Aufgabe" value="Müll rausbringen">
+        <input type="text" name="comment" placeholder="Kommentar" value="10er wenn du es nicht machst">
+        <input type="text" name="person" placeholder="Name" value="Kevin">
+        <input type="datetime-local" name="deadline">
+        <label> in Bearbeitung:</label>
+        <input type="checkbox" name="inprogress">
+        <button id="edit">Bearbeiten</button>
+        <i class="fa fa-trash-alt" id="trashbin"></i>
     </div>
 </body>
+
 </html>

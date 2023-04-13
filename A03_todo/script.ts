@@ -62,7 +62,7 @@ namespace A03 {
             newTask.value = todolist[i].task;
             newComment.value = todolist[i].comment;
             newPerson.value = todolist[i].person;
-            newDate.innerHTML = todolist[i].date;
+            newDate.value = todolist[i].date;
             newLabel.innerHTML = "in Bearbeitung";
             newButton.innerHTML = "Bearbeiten";
             newTrash.className = "fa fa-trash-alt";

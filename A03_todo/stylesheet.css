@@ -1,12 +1,34 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
 button{
     border-radius: 5px;
     background-color: blue;
     color: white;
-    border-color: rgb(8, 8, 144);   
+    border-color: rgb(8, 8, 144);
+    cursor: pointer;
     
 }
 button:active{
     background-color: yellow;
+    cursor: pointer;
     color: black;
     border-color: rgb(255, 217, 0);
+}
+.myClass{
+    
+}
+#trashbin{
+    cursor: pointer;
+}
+#trashbin:active{
+    cursor: pointer;
+    color: yellow;
+}
+#ag{
+    cursor: pointer;
+}
+#ag:active{
+    cursor: pointer;
+    color: yellow;
 }

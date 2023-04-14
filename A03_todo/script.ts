@@ -33,9 +33,12 @@ namespace A03 {
     let commentinput: HTMLInputElement = <HTMLInputElement>document.querySelector("#COM");
     let personinput: HTMLInputElement = <HTMLInputElement>document.querySelector("#NAME");
     let deadlineinput: HTMLInputElement = <HTMLInputElement>document.querySelector("#DEADLINE");
+    let wrapper: HTMLElement = <HTMLElement>document.querySelector(".boss");
+    let finishBtn: HTMLButtonElement = <HTMLButtonElement>document.querySelector("finish");
+    
     function handleload(_event: Event): void {
         callInterface();
-        document.querySelector("#finish")!.addEventListener('click', createTodo);
+        finishBtn.addEventListener('click', createTodo);
         document.querySelector("#edit")!.addEventListener('click', enableEditing);
         document.querySelector("#trashbin")!.addEventListener('click', deleteTodo);
     }
@@ -43,7 +46,7 @@ namespace A03 {
         for (let i: number = 0; i < todolist.length; i++) {
             console.log(todolist[i]);
             let newDiv = document.createElement("div");
-            let wrapper: HTMLElement = <HTMLElement>document.querySelector(".boss");
+
 
             let newDone = document.createElement("i");
             let newTask = document.createElement("input");
@@ -93,42 +96,94 @@ namespace A03 {
             newDiv.appendChild(newCheck);
             newDiv.appendChild(newButton);
             newDiv.appendChild(newTrash);
-            newDone.addEventListener('click', function() {
+            newDone.addEventListener('click', function () {
                 todolist[i].done = !todolist[i].done;
-            })
+                console.log("hallo");
+            });
             newButton.addEventListener('click', enableEditing);
+
         }
     }
 
 
     function createTodo() {
         console.log("Ich bin fertig!");
-        if(taskinput.value != ""){
-            if(commentinput.value != ""){
-                if(personinput.value != ""){
-                    if(deadlineinput.value != ""){
-                        
+        let cDiv = document.createElement("div");
+
+        let cDone = document.createElement("i");
+        let cTask = document.createElement("input");
+        cTask.readOnly = true;
+        let cComment = document.createElement("input");
+        cComment.readOnly = true;
+        let cPerson = document.createElement("input");
+        cPerson.readOnly = true;
+        let cDate = document.createElement('input');
+        cDate.type = "datetime-local";
+        let cLabel = document.createElement("label");
+        let cCheck = document.createElement("i");
+        let cButton = document.createElement("button");
+        let cTrash = document.createElement("i");
+
+
+        if (taskinput.value != "") {
+            if (commentinput.value != "") {
+                if (personinput.value != "") {
+                    if (deadlineinput.value != "") {
+                        for (let j: number = 0; j < todolist.length; j++) {
+                            if (todolist[j].done == true) {
+                                cDone.className = "far fa-check-circle";
+                            }
+                            else {
+                                cDone.className = "far fa-circle";
+                            }
+                            cTask.value = taskinput.value;
+                            cComment.value = commentinput.value;
+                            cPerson.value = personinput.value;
+                            cDate.value = deadlineinput.value;
+                            cLabel.innerHTML = "in Bearbeitung";
+                            cButton.innerHTML = "Bearbeiten";
+                            cTrash.className = "fa fa-trash-alt";
+                            cTrash.id = "ag"
+                            if (todolist[j].inprogress == true) {
+                                cCheck.className = "far fa-check-circle";
+                            }
+                            else {
+                                cCheck.className = "far fa-circle";
+                            }
+                            cDiv.className = "yourClass";
+                            wrapper.appendChild(cDiv);
+                            cDiv.appendChild(cDone);
+                            cDiv.appendChild(cTask);
+                            cDiv.appendChild(cComment);
+                            cDiv.appendChild(cPerson);
+                            cDiv.append(cDate);
+                            cCheck.appendChild(cLabel);
+                            cDiv.appendChild(cCheck);
+                            cDiv.appendChild(cButton);
+                            cDiv.appendChild(cTrash);
+
+                        }
                     }
-                    else{
-                        alert("Please Enter something!");
+                    else {
+                        alert("Please enter something in all fields!");
                     }
                 }
-                else{
-                    alert("Please Enter something!");
+                else {
+                    alert("Please enter something in all fields!");
                 }
             }
-            else{
-                alert("Please Enter something!");
+            else {
+                alert("Please enter something in all fields!");
             }
         }
-        else{
-            alert("Please Enter something!");
+        else {
+            alert("Please enter something in all fields!");
         }
     }
 
     function enableEditing() {
         console.log("Ich bearbeite es!");
-        
+
     }
     function finishEditing(_event: KeyboardEvent) {
         if (_event.key === 'Enter') {
@@ -138,6 +193,9 @@ namespace A03 {
     }
     function deleteTodo() {
         console.log("Ich schmeisse es weg!");
+        for (let k: number = 0; k < todolist.length; k++) {
+            todolist.splice(k, 1);
+        }
 
     }
 }

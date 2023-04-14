@@ -28,6 +28,7 @@ var A03;
     let personinput = document.querySelector("#NAME");
     let deadlineinput = document.querySelector("#DEADLINE");
     let wrapper = document.querySelector(".boss");
+    let secondcheckbox = document.querySelector("#checkA");
     function handleload(_event) {
         callInterface();
         document.querySelector("#finish").addEventListener('click', createTodo);
@@ -91,7 +92,15 @@ var A03;
                     newDone.className = "far fa-circle";
                 }
             });
-            newButton.addEventListener('click', enableEditing);
+            newCheck.addEventListener('click', function () {
+                todolist[i].inprogress = !todolist[i].inprogress;
+                if (todolist[i].inprogress == true) {
+                    newCheck.className = "far fa-check-circle";
+                }
+                else {
+                    newCheck.className = "far fa-circle";
+                }
+            });
             newButton.addEventListener('click', enableEditing);
         }
     }
@@ -130,7 +139,7 @@ var A03;
                             cButton.innerHTML = "Bearbeiten";
                             cTrash.className = "fa fa-trash-alt";
                             cTrash.id = "ag";
-                            if (todolist[j].inprogress == true) {
+                            if (secondcheckbox.checked == true) { //Später ändern in todolist(irgendwas) == true
                                 cCheck.className = "far fa-check-circle";
                             }
                             else {
@@ -147,6 +156,7 @@ var A03;
                             cDiv.appendChild(cCheck);
                             cDiv.appendChild(cButton);
                             cDiv.appendChild(cTrash);
+                            arrayPush();
                             cDone.addEventListener('click', function () {
                                 todolist[j].done = !todolist[j].done;
                                 if (todolist[j].done == true) {
@@ -186,6 +196,25 @@ var A03;
         console.log("Ich schmeisse es weg!");
         for (let k = 0; k < todolist.length; k++) {
             todolist.splice(k, 1);
+        }
+    }
+    function arrayPush() {
+        if (commentinput.value != "") {
+            if (personinput.value != "") {
+                if (deadlineinput.value != "") {
+                    todolist.push({ done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked });
+                    createTodo();
+                }
+                else {
+                    alert("Please enter something in all fields!");
+                }
+            }
+            else {
+                alert("Please enter something in all fields!");
+            }
+        }
+        else {
+            alert("Please enter something in all fields!");
         }
     }
 })(A03 || (A03 = {}));

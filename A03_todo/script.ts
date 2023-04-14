@@ -39,8 +39,8 @@ namespace A03 {
     function handleload(_event: Event): void {
         callInterface();
         finishBtn.addEventListener('click', createTodo);
-        document.querySelector("#edit")!.addEventListener('click', enableEditing);
-        document.querySelector("#trashbin")!.addEventListener('click', deleteTodo);
+        //document.querySelector("#edit")!.addEventListener('click', enableEditing);
+        //document.querySelector("#trashbin")!.addEventListener('click', deleteTodo);
     }
     function callInterface() {
         for (let i: number = 0; i < todolist.length; i++) {

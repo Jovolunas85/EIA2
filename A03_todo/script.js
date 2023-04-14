@@ -23,6 +23,10 @@ var A03;
             inprogress: true,
         }];
     window.addEventListener("load", handleload);
+    let taskinput = document.querySelector("#TASK");
+    let commentinput = document.querySelector("#COM");
+    let personinput = document.querySelector("#NAME");
+    let deadlineinput = document.querySelector("#DEADLINE");
     function handleload(_event) {
         callInterface();
         document.querySelector("#finish").addEventListener('click', createTodo);
@@ -36,9 +40,13 @@ var A03;
             let wrapper = document.querySelector(".boss");
             let newDone = document.createElement("i");
             let newTask = document.createElement("input");
+            newTask.readOnly = true;
             let newComment = document.createElement("input");
+            newComment.readOnly = true;
             let newPerson = document.createElement("input");
-            let newDate = document.createElement("datetime-local");
+            newPerson.readOnly = true;
+            let newDate = document.createElement('input');
+            newDate.type = "datetime-local";
             let newLabel = document.createElement("label");
             let newCheck = document.createElement("i");
             let newButton = document.createElement("button");
@@ -74,10 +82,34 @@ var A03;
             newDiv.appendChild(newCheck);
             newDiv.appendChild(newButton);
             newDiv.appendChild(newTrash);
+            newDone.addEventListener('click', function () {
+                todolist[i].done = !todolist[i].done;
+            });
+            newButton.addEventListener('click', enableEditing);
         }
     }
     function createTodo() {
         console.log("Ich bin fertig!");
+        if (taskinput.value != "") {
+            if (commentinput.value != "") {
+                if (personinput.value != "") {
+                    if (deadlineinput.value != "") {
+                    }
+                    else {
+                        alert("Please Enter something!");
+                    }
+                }
+                else {
+                    alert("Please Enter something!");
+                }
+            }
+            else {
+                alert("Please Enter something!");
+            }
+        }
+        else {
+            alert("Please Enter something!");
+        }
     }
     function enableEditing() {
         console.log("Ich bearbeite es!");

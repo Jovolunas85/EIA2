@@ -29,29 +29,36 @@ namespace A03 {
         inprogress: true,
     }];
     window.addEventListener("load", handleload);
-
+    let taskinput: HTMLInputElement = <HTMLInputElement>document.querySelector("#TASK");
+    let commentinput: HTMLInputElement = <HTMLInputElement>document.querySelector("#COM");
+    let personinput: HTMLInputElement = <HTMLInputElement>document.querySelector("#NAME");
+    let deadlineinput: HTMLInputElement = <HTMLInputElement>document.querySelector("#DEADLINE");
     function handleload(_event: Event): void {
         callInterface();
         document.querySelector("#finish")!.addEventListener('click', createTodo);
         document.querySelector("#edit")!.addEventListener('click', enableEditing);
         document.querySelector("#trashbin")!.addEventListener('click', deleteTodo);
     }
-    function callInterface(){
-        for(let i:number = 0; i < todolist.length; i++){
+    function callInterface() {
+        for (let i: number = 0; i < todolist.length; i++) {
             console.log(todolist[i]);
             let newDiv = document.createElement("div");
-            let wrapper: HTMLElement= <HTMLElement> document.querySelector(".boss");
-            
+            let wrapper: HTMLElement = <HTMLElement>document.querySelector(".boss");
+
             let newDone = document.createElement("i");
             let newTask = document.createElement("input");
+            newTask.readOnly = true;
             let newComment = document.createElement("input");
+            newComment.readOnly = true;
             let newPerson = document.createElement("input");
-            let newDate = document.createElement("datetime-local");
+            newPerson.readOnly = true;
+            let newDate = document.createElement('input');
+            newDate.type = "datetime-local";
             let newLabel = document.createElement("label");
             let newCheck = document.createElement("i");
             let newButton = document.createElement("button");
             let newTrash = document.createElement("i");
-            
+
             if (todolist[i].done == true) {
                 newDone.className = "far fa-check-circle";
             }
@@ -67,6 +74,7 @@ namespace A03 {
             newButton.innerHTML = "Bearbeiten";
             newTrash.className = "fa fa-trash-alt";
             newTrash.id = "ag"
+
             if (todolist[i].inprogress == true) {
                 newCheck.className = "far fa-check-circle";
             }
@@ -85,15 +93,42 @@ namespace A03 {
             newDiv.appendChild(newCheck);
             newDiv.appendChild(newButton);
             newDiv.appendChild(newTrash);
+            newDone.addEventListener('click', function() {
+                todolist[i].done = !todolist[i].done;
+            })
+            newButton.addEventListener('click', enableEditing);
         }
     }
+
+
     function createTodo() {
         console.log("Ich bin fertig!");
+        if(taskinput.value != ""){
+            if(commentinput.value != ""){
+                if(personinput.value != ""){
+                    if(deadlineinput.value != ""){
+                        
+                    }
+                    else{
+                        alert("Please Enter something!");
+                    }
+                }
+                else{
+                    alert("Please Enter something!");
+                }
+            }
+            else{
+                alert("Please Enter something!");
+            }
+        }
+        else{
+            alert("Please Enter something!");
+        }
     }
 
     function enableEditing() {
         console.log("Ich bearbeite es!");
-
+        
     }
     function finishEditing(_event: KeyboardEvent) {
         if (_event.key === 'Enter') {

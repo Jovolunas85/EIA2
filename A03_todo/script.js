@@ -28,10 +28,9 @@ var A03;
     let personinput = document.querySelector("#NAME");
     let deadlineinput = document.querySelector("#DEADLINE");
     let wrapper = document.querySelector(".boss");
-    let finishBtn = document.querySelector("finish");
     function handleload(_event) {
         callInterface();
-        finishBtn.addEventListener('click', createTodo);
+        document.querySelector("#finish").addEventListener('click', createTodo);
         //document.querySelector("#edit")!.addEventListener('click', enableEditing);
         //document.querySelector("#trashbin")!.addEventListener('click', deleteTodo);
     }
@@ -85,8 +84,14 @@ var A03;
             newDiv.appendChild(newTrash);
             newDone.addEventListener('click', function () {
                 todolist[i].done = !todolist[i].done;
-                console.log("hallo");
+                if (todolist[i].done == true) {
+                    newDone.className = "far fa-check-circle";
+                }
+                else {
+                    newDone.className = "far fa-circle";
+                }
             });
+            newButton.addEventListener('click', enableEditing);
             newButton.addEventListener('click', enableEditing);
         }
     }
@@ -142,6 +147,15 @@ var A03;
                             cDiv.appendChild(cCheck);
                             cDiv.appendChild(cButton);
                             cDiv.appendChild(cTrash);
+                            cDone.addEventListener('click', function () {
+                                todolist[j].done = !todolist[j].done;
+                                if (todolist[j].done == true) {
+                                    cDone.className = "far fa-check-circle";
+                                }
+                                else {
+                                    cDone.className = "far fa-circle";
+                                }
+                            });
                         }
                     }
                     else {

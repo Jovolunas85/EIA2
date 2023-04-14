@@ -6,6 +6,7 @@ Datum: <06.04.2023>
 In Zusammenarbeit mit Lena Fleig */
 var A03;
 (function (A03) {
+    debugger;
     let todolist = [{
             done: false,
             task: "Müll rausbringen",
@@ -101,7 +102,7 @@ var A03;
                     newCheck.className = "far fa-circle";
                 }
             });
-            newButton.addEventListener('click', enableEditing);
+            //newButton.addEventListener('click', enableEditing);
         }
     }
     function createTodo() {
@@ -156,7 +157,7 @@ var A03;
                             cDiv.appendChild(cCheck);
                             cDiv.appendChild(cButton);
                             cDiv.appendChild(cTrash);
-                            arrayPush();
+                            //arrayPush();//todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
                             cDone.addEventListener('click', function () {
                                 todolist[j].done = !todolist[j].done;
                                 if (todolist[j].done == true) {
@@ -166,6 +167,11 @@ var A03;
                                     cDone.className = "far fa-circle";
                                 }
                             });
+                            cTrash.addEventListener('click', deleteTodo);
+                            function deleteTodo() {
+                                console.log("Ich schmeisse es weg!");
+                                wrapper.removeChild(cDiv);
+                            }
                         }
                     }
                     else {
@@ -192,30 +198,7 @@ var A03;
         }
         console.log("Ich bin fertig!");
     }
-    function deleteTodo() {
-        console.log("Ich schmeisse es weg!");
-        for (let k = 0; k < todolist.length; k++) {
-            todolist.splice(k, 1);
-        }
-    }
     function arrayPush() {
-        if (commentinput.value != "") {
-            if (personinput.value != "") {
-                if (deadlineinput.value != "") {
-                    todolist.push({ done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked });
-                    createTodo();
-                }
-                else {
-                    alert("Please enter something in all fields!");
-                }
-            }
-            else {
-                alert("Please enter something in all fields!");
-            }
-        }
-        else {
-            alert("Please enter something in all fields!");
-        }
     }
 })(A03 || (A03 = {}));
 //# sourceMappingURL=script.js.map

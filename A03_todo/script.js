@@ -54,6 +54,7 @@ var A03;
             newPerson.readOnly = true;
             let newDate = document.createElement('input');
             newDate.type = "datetime-local";
+            newDate.readOnly = true;
             let newLabel = document.createElement("label");
             let newCheck = document.createElement("i");
             let newButton = document.createElement("button");
@@ -89,7 +90,8 @@ var A03;
             newDiv.appendChild(newCheck);
             newDiv.appendChild(newButton);
             newDiv.appendChild(newTrash);
-            newDone.addEventListener('click', function () {
+            newDone.addEventListener('click', iconChange);
+            /*function () {
                 todolist[i].done = !todolist[i].done;
                 if (todolist[i].done == true) {
                     newDone.className = "far fa-check-circle";
@@ -97,22 +99,64 @@ var A03;
                 else {
                     newDone.className = "far fa-circle";
                 }
-            });
-            newCheck.addEventListener('click', function () {
-                todolist[i].inprogress = !todolist[i].inprogress;
-                if (todolist[i].inprogress == true) {
-                    newCheck.className = "far fa-check-circle";
-                }
-                else {
-                    newCheck.className = "far fa-circle";
-                }
-            });
-            //newButton.addEventListener('click', enableEditing);
+            });*/
+            newCheck.addEventListener('click', iconChange2);
+            newButton.addEventListener('click', enableEditing);
             newTrash.addEventListener('click', deleteTodo);
         }
     }
-    function enableEditing() {
+    function iconChange(_event) {
+        let target = _event.target;
+        let parent = target.parentElement;
+        let id = Number(parent.id);
+        todolist[id].done = !todolist[id].done;
+        if (todolist[id].done == true) {
+            target.className = "far fa-check-circle";
+        }
+        else {
+            target.className = "far fa-circle";
+        }
+    }
+    function iconChange2(_event) {
+        let target = _event.target;
+        let parent = target.parentElement;
+        let id = Number(parent.id);
+        todolist[id].inprogress = !todolist[id].inprogress;
+        if (todolist[id].inprogress == true) {
+            target.className = "far fa-check-circle";
+        }
+        else {
+            target.className = "far fa-circle";
+        }
+    }
+    function enableEditing(_event) {
         console.log("Ich bearbeite es!");
+        let target = _event.target;
+        let parent = target.parentElement;
+        let inputElements = parent.querySelectorAll("input");
+        let id = Number(parent.id);
+        for (let i = 0; i < inputElements.length; i++) {
+            if (inputElements[i].readOnly == true) {
+                inputElements[i].readOnly = false;
+                console.log(inputElements[i]);
+            }
+            else {
+                inputElements[i].readOnly = true;
+                if (i == 0) {
+                    todolist[id].task = inputElements[i].value;
+                }
+                if (i == 1) {
+                    todolist[id].comment = inputElements[i].value;
+                }
+                if (i == 2) {
+                    todolist[id].person = inputElements[i].value;
+                }
+                if (i == 3) {
+                    todolist[id].date = inputElements[i].value;
+                }
+                //inputElements[i].value
+            }
+        }
     }
     function finishEditing(_event) {
         if (_event.key === 'Enter') {

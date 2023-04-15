@@ -171,6 +171,7 @@ var A03;
                             function deleteTodo() {
                                 console.log("Ich schmeisse es weg!");
                                 wrapper.removeChild(cDiv);
+                                todolist.splice(j, 1);
                             }
                         }
                     }
@@ -204,5 +205,12 @@ var A03;
         console.log(todolist);
         //todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
     }
+    /*function deleteTodo() {
+        console.log("Ich schmeisse es weg!");
+        for (let k: number = 0; k < todolist.length; k++) {
+            todolist.splice(k, 1);
+        }
+
+    }*/
 })(A03 || (A03 = {}));
 //# sourceMappingURL=script.js.map

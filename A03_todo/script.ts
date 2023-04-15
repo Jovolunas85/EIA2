@@ -178,7 +178,7 @@ namespace A03 {
                             cDiv.appendChild(cCheck);
                             cDiv.appendChild(cButton);
                             cDiv.appendChild(cTrash);
-                            
+
                             //arrayPush();
                             cDone.addEventListener('click', function () {
                                 todolist[j].done = !todolist[j].done;
@@ -193,7 +193,7 @@ namespace A03 {
                             function deleteTodo() {
                                 console.log("Ich schmeisse es weg!");
                                 wrapper.removeChild(cDiv);
-
+                                todolist.splice(j, 1);
                             }
 
                         }
@@ -225,11 +225,19 @@ namespace A03 {
         }
         console.log("Ich bin fertig!");
     }
-    
+
     function arrayPush() {
-        createTodo();
-        todolist.push({done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked});
-        console.log(todolist);
+            createTodo();
+            todolist.push({ done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked });
+            console.log(todolist);
+        
         //todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
     }
+    /*function deleteTodo() {
+        console.log("Ich schmeisse es weg!");
+        for (let k: number = 0; k < todolist.length; k++) {
+            todolist.splice(k, 1);
+        }
+
+    }*/
 }

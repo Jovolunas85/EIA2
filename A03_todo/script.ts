@@ -4,7 +4,7 @@ Matrikel: <272505>
 Datum: <06.04.2023>
 In Zusammenarbeit mit Lena Fleig */
 namespace A03 {
-    debugger;
+    //debugger;
     interface ToDos {
         done: boolean;
         task: string;
@@ -38,6 +38,11 @@ namespace A03 {
     let secondcheckbox: HTMLInputElement = <HTMLInputElement>document.querySelector("#checkA");
 
     function handleload(_event: Event): void {
+        taskinput.value ="";
+        commentinput.value ="";
+        personinput.value ="";
+        deadlineinput.value ="";
+        secondcheckbox.checked = false;
         callInterface();
         document.querySelector("#finish")!.addEventListener('click', arrayPush);
         //document.querySelector("#edit")!.addEventListener('click', enableEditing);
@@ -47,7 +52,7 @@ namespace A03 {
         for (let i: number = 0; i < todolist.length; i++) {
             console.log(todolist[i]);
             let newDiv = document.createElement("div");
-
+            newDiv.id = ""+ i;
 
             let newDone = document.createElement("i");
             let newTask = document.createElement("input");
@@ -118,12 +123,49 @@ namespace A03 {
             });
 
             //newButton.addEventListener('click', enableEditing);
-
+            newTrash.addEventListener('click', deleteTodo);
         }
     }
 
+    function enableEditing() {
+        console.log("Ich bearbeite es!");
 
-    function createTodo() {
+    }
+    function finishEditing(_event: KeyboardEvent) {
+        if (_event.key === 'Enter') {
+
+        }
+        console.log("Ich bin fertig!");
+    }
+
+    function arrayPush() {
+        //createTodo();
+        todolist.push({ done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked });
+        console.log(todolist);
+        wrapper.innerHTML = "";
+        callInterface();
+        taskinput.value ="";
+        commentinput.value ="";
+        personinput.value ="";
+        deadlineinput.value ="";
+        secondcheckbox.checked = false;
+        //todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
+    }
+    function deleteTodo(_event: MouseEvent) {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let parent: HTMLElement = <HTMLElement>target.parentElement;
+        //console.log("Ich schmeisse es weg!");
+        wrapper.removeChild(parent);
+        //todolist.splice(j, 1);
+    }
+    /*function deleteTodo() {
+        console.log("Ich schmeisse es weg!");
+        for (let k: number = 0; k < todolist.length; k++) {
+            todolist.splice(k, 1);
+        }
+
+    }*/
+    /*function createTodo() {
         console.log("Ich bin fertig!");
         let cDiv = document.createElement("div");
 
@@ -142,102 +184,59 @@ namespace A03 {
         let cTrash = document.createElement("i");
 
 
-        if (taskinput.value != "") {
-            if (commentinput.value != "") {
-                if (personinput.value != "") {
-                    if (deadlineinput.value != "") {
-                        for (let j: number = 0; j < todolist.length; j++) {
-                            if (todolist[j].done == true) {
-                                cDone.className = "far fa-check-circle";
-                            }
-                            else {
-                                cDone.className = "far fa-circle";
-                            }
-                            cTask.value = taskinput.value;
-                            cComment.value = commentinput.value;
-                            cPerson.value = personinput.value;
-                            cDate.value = deadlineinput.value;
-                            cLabel.innerHTML = "in Bearbeitung";
-                            cButton.innerHTML = "Bearbeiten";
-                            cTrash.className = "fa fa-trash-alt";
-                            cTrash.id = "ag"
-                            if (secondcheckbox.checked == true) { //Später ändern in todolist(irgendwas) == true
-                                cCheck.className = "far fa-check-circle";
-                            }
-                            else {
-                                cCheck.className = "far fa-circle";
-                            }
-                            cDiv.className = "yourClass";
-                            wrapper.appendChild(cDiv);
-                            cDiv.appendChild(cDone);
-                            cDiv.appendChild(cTask);
-                            cDiv.appendChild(cComment);
-                            cDiv.appendChild(cPerson);
-                            cDiv.append(cDate);
-                            cCheck.appendChild(cLabel);
-                            cDiv.appendChild(cCheck);
-                            cDiv.appendChild(cButton);
-                            cDiv.appendChild(cTrash);
+        if (taskinput.value != "" || commentinput.value != "" || personinput.value != "" || deadlineinput.value != "") {
 
-                            //arrayPush();
-                            cDone.addEventListener('click', function () {
-                                todolist[j].done = !todolist[j].done;
-                                if (todolist[j].done == true) {
-                                    cDone.className = "far fa-check-circle";
-                                }
-                                else {
-                                    cDone.className = "far fa-circle";
-                                }
-                            });
-                            cTrash.addEventListener('click', deleteTodo);
-                            function deleteTodo() {
-                                console.log("Ich schmeisse es weg!");
-                                wrapper.removeChild(cDiv);
-                                todolist.splice(j, 1);
-                            }
-
-                        }
-                    }
-                    else {
-                        alert("Please enter something in all fields!");
-                    }
+            for (let j: number = 0; j < todolist.length; j++) {
+                if (todolist[j].done == true) {
+                    cDone.className = "far fa-check-circle";
                 }
                 else {
-                    alert("Please enter something in all fields!");
+                    cDone.className = "far fa-circle";
                 }
-            }
-            else {
-                alert("Please enter something in all fields!");
+                cTask.value = taskinput.value;
+                cComment.value = commentinput.value;
+                cPerson.value = personinput.value;
+                cDate.value = deadlineinput.value;
+                cLabel.innerHTML = "in Bearbeitung";
+                cButton.innerHTML = "Bearbeiten";
+                cTrash.className = "fa fa-trash-alt";
+                cTrash.id = "ag"
+                if (secondcheckbox.checked == true) { //Später ändern in todolist(irgendwas) == true
+                    cCheck.className = "far fa-check-circle";
+                }
+                else {
+                    cCheck.className = "far fa-circle";
+                }
+                cDiv.className = "yourClass";
+                wrapper.appendChild(cDiv);
+                cDiv.appendChild(cDone);
+                cDiv.appendChild(cTask);
+                cDiv.appendChild(cComment);
+                cDiv.appendChild(cPerson);
+                cDiv.append(cDate);
+                cCheck.appendChild(cLabel);
+                cDiv.appendChild(cCheck);
+                cDiv.appendChild(cButton);
+                cDiv.appendChild(cTrash);
+
+                //arrayPush();
+                cDone.addEventListener('click', function () {
+                    todolist[j].done = !todolist[j].done;
+                    if (todolist[j].done == true) {
+                        cDone.className = "far fa-check-circle";
+                    }
+                    else {
+                        cDone.className = "far fa-circle";
+                    }
+                });
+                
+
+
             }
         }
         else {
             alert("Please enter something in all fields!");
         }
-    }
-
-    function enableEditing() {
-        console.log("Ich bearbeite es!");
-
-    }
-    function finishEditing(_event: KeyboardEvent) {
-        if (_event.key === 'Enter') {
-
-        }
-        console.log("Ich bin fertig!");
-    }
-
-    function arrayPush() {
-            createTodo();
-            todolist.push({ done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked });
-            console.log(todolist);
-        
-        //todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
-    }
-    /*function deleteTodo() {
-        console.log("Ich schmeisse es weg!");
-        for (let k: number = 0; k < todolist.length; k++) {
-            todolist.splice(k, 1);
-        }
-
     }*/
+
 }

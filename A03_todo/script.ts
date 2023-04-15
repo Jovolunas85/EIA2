@@ -39,7 +39,7 @@ namespace A03 {
 
     function handleload(_event: Event): void {
         callInterface();
-        document.querySelector("#finish")!.addEventListener('click', createTodo);
+        document.querySelector("#finish")!.addEventListener('click', arrayPush);
         //document.querySelector("#edit")!.addEventListener('click', enableEditing);
         //document.querySelector("#trashbin")!.addEventListener('click', deleteTodo);
     }
@@ -178,7 +178,8 @@ namespace A03 {
                             cDiv.appendChild(cCheck);
                             cDiv.appendChild(cButton);
                             cDiv.appendChild(cTrash);
-                            //arrayPush();//todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
+                            
+                            //arrayPush();
                             cDone.addEventListener('click', function () {
                                 todolist[j].done = !todolist[j].done;
                                 if (todolist[j].done == true) {
@@ -224,8 +225,11 @@ namespace A03 {
         }
         console.log("Ich bin fertig!");
     }
-
+    
     function arrayPush() {
-        
+        createTodo();
+        todolist.push({done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked});
+        console.log(todolist);
+        //todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
     }
 }

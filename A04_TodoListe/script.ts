@@ -174,12 +174,7 @@ namespace A03 {
             }
         }
     }
-    function finishEditing(_event: KeyboardEvent) {
-        if (_event.key === 'Enter') {
 
-        }
-        console.log("Ich bin fertig!");
-    }
 
     function arrayPush() {
         //createTodo();

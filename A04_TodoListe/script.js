@@ -158,11 +158,6 @@ var A03;
             }
         }
     }
-    function finishEditing(_event) {
-        if (_event.key === 'Enter') {
-        }
-        console.log("Ich bin fertig!");
-    }
     function arrayPush() {
         //createTodo();
         todolist.push({ done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked });

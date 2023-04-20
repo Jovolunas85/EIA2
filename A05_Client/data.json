@@ -1,0 +1,16 @@
+[{
+    "done": false,
+    "task": "Müll rausbringen",
+    "comment": "10er wenn du es nicht machst",
+    "person": "Kevin",
+    "date": "2023-04-29T14:00",
+    "inprogress": true
+},
+{
+    "done": false,
+    "task": "spülen",
+    "comment": "Nimmt nicht den Schwamm",
+    "person": "Janina",
+    "date": "2023-04-21T12:23",
+    "inprogress": true
+}]

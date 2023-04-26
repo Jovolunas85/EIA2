@@ -6,22 +6,7 @@ Datum: <06.04.2023>
 In Zusammenarbeit mit Lena Fleig */
 var A03;
 (function (A03) {
-    let todolist = [{
-            done: false,
-            task: "Müll rausbringen",
-            comment: "10er wenn du es nicht machst",
-            person: "Kevin",
-            date: "2023-04-29T14:00",
-            inprogress: true,
-        },
-        {
-            done: false,
-            task: "spülen",
-            comment: "Nimmt nicht den Schwamm",
-            person: "Janina",
-            date: "2023-04-21T12:23",
-            inprogress: true,
-        }];
+    let todolist;
     window.addEventListener("load", handleload);
     let taskinput = document.querySelector("#TASK");
     let commentinput = document.querySelector("#COM");
@@ -29,16 +14,42 @@ var A03;
     let deadlineinput = document.querySelector("#DEADLINE");
     let wrapper = document.querySelector(".boss");
     let secondcheckbox = document.querySelector("#checkA");
+    let data;
     function handleload(_event) {
         taskinput.value = "";
         commentinput.value = "";
         personinput.value = "";
         deadlineinput.value = "";
         secondcheckbox.checked = false;
-        callInterface();
+        requestData("https://jovolunas85.github.io/EIA2/A05_Client/data.json");
+        console.log(data);
         document.querySelector("#finish").addEventListener('click', arrayPush);
-        //document.querySelector("#edit")!.addEventListener('click', enableEditing);
-        //document.querySelector("#trashbin")!.addEventListener('click', deleteTodo);
+    }
+    async function requestData(_url) {
+        let response = await fetch(_url);
+        console.log("Response", response);
+        let seperateDate = await response.text();
+        todolist = JSON.parse(seperateDate);
+        console.log(todolist);
+        callInterface();
+    }
+    async function sendData() {
+        let url = "https://jovolunas85.github.io/EIA2/A05_Client/data.json";
+        let query = new URLSearchParams(+taskinput.value + commentinput.value + personinput.value + deadlineinput.value);
+        await fetch(url + "?" + query.toString());
+        alert("sent Data!");
+    }
+    async function editData() {
+        let url = "https://jovolunas85.github.io/EIA2/A05_Client/data.json";
+        let query = new URLSearchParams(+taskinput.value + commentinput.value + personinput.value + deadlineinput.value);
+        await fetch(url + "?" + query.toString());
+        alert("edit Data!");
+    }
+    async function deleteData() {
+        let url = "https://jovolunas85.github.io/EIA2/A05_Client/data.json";
+        let query = new URLSearchParams(+taskinput.value + commentinput.value + personinput.value + deadlineinput.value);
+        await fetch(url + "?" + query.toString());
+        alert("delete Data!");
     }
     function callInterface() {
         for (let i = 0; i < todolist.length; i++) {
@@ -91,15 +102,6 @@ var A03;
             newDiv.appendChild(newButton);
             newDiv.appendChild(newTrash);
             newDone.addEventListener('click', iconChange);
-            /*function () {
-                todolist[i].done = !todolist[i].done;
-                if (todolist[i].done == true) {
-                    newDone.className = "far fa-check-circle";
-                }
-                else {
-                    newDone.className = "far fa-circle";
-                }
-            });*/
             newCheck.addEventListener('click', iconChange2);
             newButton.addEventListener('click', enableEditing);
             newTrash.addEventListener('click', deleteTodo);
@@ -154,12 +156,11 @@ var A03;
                 if (i == 3) {
                     todolist[id].date = inputElements[i].value;
                 }
-                //inputElements[i].value
             }
         }
+        editData();
     }
     function arrayPush() {
-        //createTodo();
         todolist.push({ done: false, task: taskinput.value, comment: commentinput.value, person: personinput.value, date: deadlineinput.value, inprogress: secondcheckbox.checked });
         console.log(todolist);
         wrapper.innerHTML = "";
@@ -169,94 +170,13 @@ var A03;
         personinput.value = "";
         deadlineinput.value = "";
         secondcheckbox.checked = false;
-        //todolist.push({done: false, task: cTask.value, comment: cComment.value, person: cPerson.value, date: cDate.value, inprogress: secondcheckbox.checked});
+        sendData();
     }
     function deleteTodo(_event) {
         let target = _event.target;
         let parent = target.parentElement;
-        //console.log("Ich schmeisse es weg!");
         wrapper.removeChild(parent);
-        //todolist.splice(j, 1);
+        deleteData();
     }
-    /*function deleteTodo() {
-        console.log("Ich schmeisse es weg!");
-        for (let k: number = 0; k < todolist.length; k++) {
-            todolist.splice(k, 1);
-        }
-
-    }*/
-    /*function createTodo() {
-        console.log("Ich bin fertig!");
-        let cDiv = document.createElement("div");
-
-        let cDone = document.createElement("i");
-        let cTask = document.createElement("input");
-        cTask.readOnly = true;
-        let cComment = document.createElement("input");
-        cComment.readOnly = true;
-        let cPerson = document.createElement("input");
-        cPerson.readOnly = true;
-        let cDate = document.createElement('input');
-        cDate.type = "datetime-local";
-        let cLabel = document.createElement("label");
-        let cCheck = document.createElement("i");
-        let cButton = document.createElement("button");
-        let cTrash = document.createElement("i");
-
-
-        if (taskinput.value != "" || commentinput.value != "" || personinput.value != "" || deadlineinput.value != "") {
-
-            for (let j: number = 0; j < todolist.length; j++) {
-                if (todolist[j].done == true) {
-                    cDone.className = "far fa-check-circle";
-                }
-                else {
-                    cDone.className = "far fa-circle";
-                }
-                cTask.value = taskinput.value;
-                cComment.value = commentinput.value;
-                cPerson.value = personinput.value;
-                cDate.value = deadlineinput.value;
-                cLabel.innerHTML = "in Bearbeitung";
-                cButton.innerHTML = "Bearbeiten";
-                cTrash.className = "fa fa-trash-alt";
-                cTrash.id = "ag"
-                if (secondcheckbox.checked == true) { //Später ändern in todolist(irgendwas) == true
-                    cCheck.className = "far fa-check-circle";
-                }
-                else {
-                    cCheck.className = "far fa-circle";
-                }
-                cDiv.className = "yourClass";
-                wrapper.appendChild(cDiv);
-                cDiv.appendChild(cDone);
-                cDiv.appendChild(cTask);
-                cDiv.appendChild(cComment);
-                cDiv.appendChild(cPerson);
-                cDiv.append(cDate);
-                cCheck.appendChild(cLabel);
-                cDiv.appendChild(cCheck);
-                cDiv.appendChild(cButton);
-                cDiv.appendChild(cTrash);
-
-                //arrayPush();
-                cDone.addEventListener('click', function () {
-                    todolist[j].done = !todolist[j].done;
-                    if (todolist[j].done == true) {
-                        cDone.className = "far fa-check-circle";
-                    }
-                    else {
-                        cDone.className = "far fa-circle";
-                    }
-                });
-                
-
-
-            }
-        }
-        else {
-            alert("Please enter something in all fields!");
-        }
-    }*/
 })(A03 || (A03 = {}));
 //# sourceMappingURL=script.js.map

@@ -46,15 +46,15 @@ namespace A03 {
         await fetch(url + "?" + query.toString());
         alert("sent Data!");
     }
-    async function editData(): Promise<void> {
+    async function editData(_parentIDedit:string): Promise<void> {
         let url: string = "https://jovolunas85.github.io/EIA2/A05_Client/data.json";
-        let query: URLSearchParams = new URLSearchParams(<any>+taskinput.value+commentinput.value+personinput.value+deadlineinput.value);
+        let query: URLSearchParams = new URLSearchParams(<any>+taskinput.value+commentinput.value+personinput.value+deadlineinput.value+_parentIDedit);
         await fetch(url + "?" + query.toString());
         alert("edit Data!");
     }
-    async function deleteData(): Promise<void> {
+    async function deleteData(_parentID : string): Promise<void> {
         let url: string = "https://jovolunas85.github.io/EIA2/A05_Client/data.json";
-        let query: URLSearchParams = new URLSearchParams(<any>+taskinput.value+commentinput.value+personinput.value+deadlineinput.value);
+        let query: URLSearchParams = new URLSearchParams(<any>+ _parentID);
         await fetch(url + "?" + query.toString());
         alert("delete Data!");
     }
@@ -150,6 +150,7 @@ namespace A03 {
         console.log("Ich bearbeite es!");
         let target: HTMLElement = <HTMLElement>_event.target;
         let parent: HTMLElement = <HTMLElement>target.parentElement;
+        console.log(parent.id)
         let inputElements: NodeListOf<HTMLInputElement> = parent.querySelectorAll("input");
         let id: number = Number(parent.id);
         for (let i: number = 0; i < inputElements.length; i++) {
@@ -173,7 +174,7 @@ namespace A03 {
                 }
             }
         }
-        editData();
+        editData(parent.id);
     }
 
 
@@ -192,8 +193,9 @@ namespace A03 {
     function deleteTodo(_event: MouseEvent) {
         let target: HTMLElement = <HTMLElement>_event.target;
         let parent: HTMLElement = <HTMLElement>target.parentElement;
+        console.log(parent.id);
         wrapper.removeChild(parent);
-        deleteData();
+        deleteData(parent.id);
     }
 
 }
